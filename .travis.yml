@@ -1,0 +1,11 @@
+language: go
+sudo: false
+go:
+  - 1.9.2
+services:
+  - mysql
+before_install:
+  - go get -v
+  - mysql -e 'create database canyonsysu;'
+
+
