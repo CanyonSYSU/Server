@@ -22,6 +22,7 @@ func TestMenufoodRegister(t *testing.T) {
 	}{
 		{"添加可乐", args{"cola", 1.5, 1, "juice", "ice cola", "adwww.jpg"}, true, false},
 		{"添加雪碧", args{"sprit", 2.5, 1, "juice", "ice sprit", "32dsd.jpg"}, true, false},
+		{"添加健力宝", args{"Jianlibao", 3.5, 1, "juice", "ice Jianlibao", "fwef.jpg"}, true, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -42,7 +43,7 @@ func TestListAllMenufoods(t *testing.T) {
 		name string
 		want int
 	}{
-		{"查看目前两个商品可乐和雪碧", 2},
+		{"查看目前三个商品可乐和雪碧和健力宝", 3},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -124,8 +125,8 @@ func TestDeleteMenufood(t *testing.T) {
 		args args
 		want int
 	}{
-		{"根据错误id删除可乐", args{0}, 0},
-		{"根据正确id删除可乐", args{1}, 1},
+		{"根据错误id删除健力宝", args{5}, 0},
+		{"根据正确id删除健力宝", args{3}, 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
