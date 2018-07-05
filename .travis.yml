@@ -16,4 +16,3 @@ before_install:
   - sudo service mysql restart
   - mysql -e 'create database canyonsysu;'
   - go get -v
-  - go test -v ./service
