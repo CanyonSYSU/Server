@@ -4,6 +4,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"path/filepath"
 )
 
 var (
@@ -54,9 +55,8 @@ func Free() {
 }
 
 func getErrLogFile() *os.File {
-	//logPath := filepath.Join(os.Getenv("GOPATH"), "/src/Agenda/data/error.log")
+	logPath := filepath.Join(os.Getenv("GOPATH"), "/src/github.com/moandy/canyonsysu/data/error.log")
 	//logPath := "data/error.log"
-	logPath := "../data/error.log" //for travis CI
 	file, err := os.OpenFile(logPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("file open error : %v", err)
@@ -66,8 +66,8 @@ func getErrLogFile() *os.File {
 }
 
 func getLogFile() *os.File {
+	logPath := filepath.Join(os.Getenv("GOPATH"), "/src/github.com/moandy/canyonsysu/data/info.log")
 	//logPath := "data/info.log"
-	logPath := "../data/info.log" // for travis CI
 	file, err := os.OpenFile(logPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("file open error : %v", err)
