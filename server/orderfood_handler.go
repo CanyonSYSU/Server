@@ -1,9 +1,10 @@
 package server
+
 import (
 	//"go-agenda-service/service/entity"
 	//"go-agenda-service/service/service"
-	"github.com/moandy/canyonsysu/loghelper"
-	"github.com/moandy/canyonsysu/service"
+	"github.com/CanyonSYSU/Server/loghelper"
+	"github.com/CanyonSYSU/Server/service"
 	//"fmt"
 	"net/http"
 	//"path/filepath"
@@ -42,7 +43,7 @@ func OrderRegisterHandler(formatter *render.Render) http.HandlerFunc {
 		order_num, _ := js.Get("order_num").Int()
 		time, _ := js.Get("order_time").String()
 		loghelper.Warning.Println(js)
-		loghelper.Warning.Println(order_contain, table_id,total,order_contain,order_num, phone, time)
+		loghelper.Warning.Println(order_contain, table_id, total, order_contain, order_num, phone, time)
 		flag, _ := service.OrderfoodRegister(phone, table_id, order_contain, total, order_num, time)
 		//flag := true
 		if flag == true {
@@ -60,7 +61,7 @@ func OrderRegisterHandler(formatter *render.Render) http.HandlerFunc {
 
 func ListAllOrderHandler(formatter *render.Render) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin","*")
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 		req.ParseForm()
 		res := service.ListAllOrders()

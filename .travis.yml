@@ -1,11 +1,19 @@
 language: go
-sudo: false
+sudo: require
+dist: trusty
 go:
   - 1.9.2
-services:
-  - mysql
+
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
+      
 before_install:
-  - go get -v
+  - sudo service mysql restart
   - mysql -e 'create database canyonsysu;'
-
-
+  - go get -v
+  - go test -v ./service
