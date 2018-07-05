@@ -55,7 +55,7 @@ func Free() {
 }
 
 func getErrLogFile() *os.File {
-	logPath := filepath.Join(os.Getenv("GOPATH"), "/src/github.com/moandy/canyonsysu/data/error.log")
+	logPath := filepath.Join(os.Getenv("GOPATH"), "/src/github.com/CanyonSYSU/Server/data/error.log")
 	//logPath := "data/error.log"
 	file, err := os.OpenFile(logPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
@@ -66,7 +66,7 @@ func getErrLogFile() *os.File {
 }
 
 func getLogFile() *os.File {
-	logPath := filepath.Join(os.Getenv("GOPATH"), "/src/github.com/moandy/canyonsysu/data/info.log")
+	logPath := filepath.Join(os.Getenv("GOPATH"), "/src/github.com/CanyonSYSU/Server/data/info.log")
 	//logPath := "data/info.log"
 	file, err := os.OpenFile(logPath, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
