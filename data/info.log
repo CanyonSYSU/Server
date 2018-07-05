@@ -556,3 +556,4 @@ INFO: 2018/07/04 17:19:57 log.go:46: Start up Info log
 INFO: 2018/07/04 17:19:59 restaurant_handler.go:68: Get All Restaurants!
 INFO: 2018/07/04 17:19:59 comment_handler.go:80: List All Tags!
 INFO: 2018/07/04 17:19:59 orderfood_handler.go:136: Get Order by Phone!
+INFO: 2018/07/05 20:01:20 log.go:45: Start up Info log

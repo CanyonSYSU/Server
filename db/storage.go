@@ -1,9 +1,9 @@
 package db
 
-import"github.com/moandy/canyonsysu/entity"
+import "github.com/CanyonSYSU/Server/entity"
 
 //CustomerFilter ...
-type CustomerFilter func(*entity.Customer) bool  
+type CustomerFilter func(*entity.Customer) bool
 type RestaurantFilter func(*entity.Restaurant) bool
 type MenufoodFilter func(*entity.Menufood) bool
 type OrderFilter func(*entity.Orders) bool
@@ -221,7 +221,7 @@ func QueryCommentCountsByTag(tag string) int {
 func QueryTag() []string {
 	comment := findAllComments()
 	var tags []string
-	for _ , value := range comment {
+	for _, value := range comment {
 		tags = append(tags, value.Tags)
 	}
 	return tags
@@ -231,7 +231,7 @@ func QueryMenufoodTags() (int, []string) {
 	return findAllMenufoodByTag()
 }
 
-func QueryCommentByCount(begin, offset int) ([]entity.Comment) {
+func QueryCommentByCount(begin, offset int) []entity.Comment {
 	return findCommentByCount(begin, offset)
 }
 

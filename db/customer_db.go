@@ -1,7 +1,8 @@
 package db
+
 import (
-	"github.com/moandy/canyonsysu/loghelper"
-	"github.com/moandy/canyonsysu/entity"
+	"github.com/CanyonSYSU/Server/entity"
+	"github.com/CanyonSYSU/Server/loghelper"
 	_ "github.com/go-sql-driver/mysql" // for init
 	//"github.com/go-xorm/xorm"
 )

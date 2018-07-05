@@ -1,11 +1,11 @@
 package service
 
 import (
-	"github.com/moandy/canyonsysu/entity"
-	"github.com/moandy/canyonsysu/loghelper"
+	"github.com/CanyonSYSU/Server/entity"
+	"github.com/CanyonSYSU/Server/loghelper"
 	//"fmt"
 	//simplejson "github.com/bitly/go-simplejson"
-	"github.com/moandy/canyonsysu/db"
+	"github.com/CanyonSYSU/Server/db"
 )
 
 func CustomerRegister(name string, password string, restaurant_id int, phone string) (bool, error) {

@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/moandy/canyonsysu/entity"
+	"github.com/karl-jm-huang/golang-CI/entity"
 )
 
 func TestCommentRegister(t *testing.T) {
@@ -24,8 +24,9 @@ func TestCommentRegister(t *testing.T) {
 		want    bool
 		wantErr bool
 	}{
-	// TODO: Add test cases.
-	//{"case 0", args{1, 5, "20180630", "huangjm", "好吃", "touxiang.jpg", "你家店不错", "谢谢惠顾"}, true, false},
+		{"新增评论0", args{0, 5, "20180630", "huangjm", "good", "touxiang.jpg", "very nice", "thanks"}, true, false},
+		{"新增评论1", args{1, 2, "20180701", "mohk", "good", "re23r.jpg", "I like it", "welcome"}, true, false},
+		{"新增评论2", args{2, 1, "20180704", "huangzhe", "bad", "dadads.jpg", "what the hell food", "fuck u"}, true, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -44,15 +45,14 @@ func TestCommentRegister(t *testing.T) {
 func TestListAllComments(t *testing.T) {
 	tests := []struct {
 		name string
-		want []entity.Comment
+		want int
 	}{
-	// TODO: Add test cases.
-	//{"case 0", []entity.Comment{}},
+		{"获取全部评论", 3},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ListAllComments(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("ListAllComments() = %v, want %v", got, tt.want)
+			if got := len(ListAllComments()); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ListAllComments() totally = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -67,13 +67,12 @@ func TestGetCommentCountByTag(t *testing.T) {
 		args args
 		want int
 	}{
-	// TODO: Add test cases.
-	//{"case 0", args{"好吃"}, 1},
+		{"获取标签为'good'的一类评论数量", args{"good"}, 2},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := GetCommentCountByTag(tt.args.tag); got != tt.want {
-				t.Errorf("GetCommentCountByTag() = %v, want %v", got, tt.want)
+				t.Errorf("GetCommentCountByTag() totally = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -84,8 +83,7 @@ func TestListAllTags(t *testing.T) { //ListAllTags()需要额外返回bool
 		name string
 		want []entity.Tags
 	}{
-	// TODO: Add test cases.
-	//{"case 0", []entity.Tags{}},
+		{"目前只有“good”与“bad”两类评论标签", []entity.Tags{{"good", 2}, {"bad", 1}}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -104,15 +102,14 @@ func TestListCommentsByCount(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want []entity.Comment
+		want int
 	}{
-	// TODO: Add test cases.
-	//{"case 0", args{0, 5}, []entity.Comment{}},
+		{"获取开头2条评论", args{0, 2}, 2},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ListCommentsByCount(tt.args.begin, tt.args.offset); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("ListCommentsByCount() = %v, want %v", got, tt.want)
+			if got := len(ListCommentsByCount(tt.args.begin, tt.args.offset)); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ListCommentsByCount() totally = %v, want %v", got, tt.want)
 			}
 		})
 	}

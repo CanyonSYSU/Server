@@ -1,10 +1,10 @@
 package service
 
 import (
-	"github.com/moandy/canyonsysu/entity"
-	"github.com/moandy/canyonsysu/loghelper"
+	"github.com/CanyonSYSU/Server/entity"
+	"github.com/CanyonSYSU/Server/loghelper"
 	//"fmt"
-	"github.com/moandy/canyonsysu/db"
+	"github.com/CanyonSYSU/Server/db"
 	//simplejson "github.com/bitly/go-simplejson"
 )
 
@@ -38,18 +38,18 @@ func GetCommentCountByTag(tag string) int {
 }
 
 func ListAllTags() []entity.Tags {
-	tag_str := db.QueryTag()	
+	tag_str := db.QueryTag()
 	if len(tag_str) == 0 {
 		return nil
 	}
 	var tag_map map[string]int
 	tag_map = make(map[string]int)
-	for _ , v := range tag_str {
+	for _, v := range tag_str {
 		tag_map[v]++
 	}
 	var tags []entity.Tags
 	for k, v := range tag_map {
-		tags = append(tags, entity.Tags{Tag:k, Count:v})
+		tags = append(tags, entity.Tags{Tag: k, Count: v})
 	}
 	return tags
 }

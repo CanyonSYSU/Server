@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/moandy/canyonsysu/entity"
+	"github.com/karl-jm-huang/golang-CI/entity"
 )
 
 func TestCustomerRegister(t *testing.T) {
@@ -71,3 +71,5 @@ func TestGetCustomerByName(t *testing.T) {
 		})
 	}
 }
+
+//缺少个删除的函数

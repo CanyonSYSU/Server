@@ -3,8 +3,6 @@ package service
 import (
 	"reflect"
 	"testing"
-
-	"github.com/moandy/canyonsysu/entity"
 )
 
 func TestRestaurantRegister(t *testing.T) {
@@ -20,7 +18,7 @@ func TestRestaurantRegister(t *testing.T) {
 		want    bool
 		wantErr bool
 	}{
-	// TODO: Add test cases.
+		{"创建新商店", args{"canyon", "higer city", "zhengshu", "9:00-20:00"}, true, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -39,14 +37,14 @@ func TestRestaurantRegister(t *testing.T) {
 func TestListAllRestaurants(t *testing.T) {
 	tests := []struct {
 		name string
-		want []entity.Restaurant
+		want int
 	}{
-	// TODO: Add test cases.
+		{"获取目前商家列表，只有一个", 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ListAllRestaurants(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("ListAllRestaurants() = %v, want %v", got, tt.want)
+			if got := len(ListAllRestaurants()); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ListAllRestaurants() totally = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -57,16 +55,16 @@ func TestGetRestaurantByName(t *testing.T) {
 		rname string
 	}
 	tests := []struct {
-		name string
-		args args
-		want *entity.Restaurant
+		name  string
+		args  args
+		exist bool
 	}{
-	// TODO: Add test cases.
+		{"获取名为canyon的商店", args{"canyon"}, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := GetRestaurantByName(tt.args.rname); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("GetRestaurantByName() = %v, want %v", got, tt.want)
+			if got := (GetRestaurantByName(tt.args.rname) != nil); !reflect.DeepEqual(got, tt.exist) {
+				t.Errorf("GetRestaurantByName() = %v, want %v", got, tt.exist)
 			}
 		})
 	}
@@ -84,7 +82,7 @@ func TestUpdateRestaurant(t *testing.T) {
 		args args
 		want int
 	}{
-	// TODO: Add test cases.
+		{"更新canyon商家的地址", args{"canyon", "sysu shen6", "8:00-20:00", "zhengshu"}, 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

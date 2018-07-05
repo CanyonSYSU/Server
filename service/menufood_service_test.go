@@ -3,8 +3,6 @@ package service
 import (
 	"reflect"
 	"testing"
-
-	"github.com/moandy/canyonsysu/entity"
 )
 
 func TestMenufoodRegister(t *testing.T) {
@@ -22,7 +20,8 @@ func TestMenufoodRegister(t *testing.T) {
 		want    bool
 		wantErr bool
 	}{
-	// TODO: Add test cases.
+		{"添加可乐", args{"cola", 1.5, 0, "juice", "ice cola", "adwww.jpg"}, true, false},
+		{"添加雪碧", args{"sprit", 2.5, 0, "juice", "ice sprit", "32dsd.jpg"}, true, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -41,14 +40,14 @@ func TestMenufoodRegister(t *testing.T) {
 func TestListAllMenufoods(t *testing.T) {
 	tests := []struct {
 		name string
-		want []entity.Menufood
+		want int
 	}{
-	// TODO: Add test cases.
+		{"查看目前两个商品可乐和雪碧", 2},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ListAllMenufoods(); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("ListAllMenufoods() = %v, want %v", got, tt.want)
+			if got := len(ListAllMenufoods()); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("ListAllMenufoods() totally = %v, want %v", got, tt.want)
 			}
 		})
 	}
@@ -57,13 +56,13 @@ func TestListAllMenufoods(t *testing.T) {
 func TestListAllMenufoodsThroughTags(t *testing.T) {
 	tests := []struct {
 		name string
-		want []entity.Menufood_ins
+		want int
 	}{
-	// TODO: Add test cases.
+		{"目前只有juice一类菜品", 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ListAllMenufoodsThroughTags(); !reflect.DeepEqual(got, tt.want) {
+			if got := len(ListAllMenufoodsThroughTags()); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("ListAllMenufoodsThroughTags() = %v, want %v", got, tt.want)
 			}
 		})
@@ -75,16 +74,16 @@ func TestGetMenufoodByName(t *testing.T) {
 		rname string
 	}
 	tests := []struct {
-		name string
-		args args
-		want *entity.Menufood
+		name  string
+		args  args
+		exist bool
 	}{
-	// TODO: Add test cases.
+		{"获取可乐", args{"cola"}, true},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := GetMenufoodByName(tt.args.rname); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("GetMenufoodByName() = %v, want %v", got, tt.want)
+			if got := (GetMenufoodByName(tt.args.rname) != nil); !reflect.DeepEqual(got, tt.exist) {
+				t.Errorf("GetMenufoodByName() = %v, want %v", got, tt.exist)
 			}
 		})
 	}
@@ -104,7 +103,8 @@ func TestUpdateMenufood(t *testing.T) {
 		args args
 		want int
 	}{
-	// TODO: Add test cases.
+		{"根据错误id更新可乐的价格", args{0, "adwww.jpg", "cola", 3.5, "ice cola", "juice"}, 0},
+		{"根据正确id更新可乐的价格", args{1, "adwww.jpg", "cola", 3.5, "ice cola", "juice"}, 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
@@ -124,12 +124,13 @@ func TestDeleteMenufood(t *testing.T) {
 		args args
 		want int
 	}{
-	// TODO: Add test cases.
+		{"根据错误id删除可乐", args{0}, 0},
+		{"根据正确id删除可乐", args{1}, 1},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			if got := DeleteMenufood(tt.args.id); got != tt.want {
-				t.Errorf("DeleteMenufood() = %v, want %v", got, tt.want)
+				t.Errorf("DeleteMenufood() totally = %v, want %v", got, tt.want)
 			}
 		})
 	}
