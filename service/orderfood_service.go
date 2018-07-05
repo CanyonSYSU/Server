@@ -53,18 +53,11 @@ func ListAllOrders() []entity.Order_ins {
 	return t
 }
 
-func DeleteOrderBy(id int) int {
-	del_ordernum := db.DeleteOrder(func(m *entity.Orders) bool {
-		return m.ID == id
-	})
-	db.DeleteOrderfood(func(m *entity.Orderfood) bool {
-		return m.Order_id == id
-	})
-	return del_ordernum
-}
-
 func GetOrderByID(id int) *entity.Order_ins {
 	order := db.QueryOrderByID(id)
+	if order == nil {
+		return nil
+	}
 	var t entity.Order_ins
 	t.ID = order.ID
 	t.Table_id = order.Table_id
@@ -89,4 +82,14 @@ func GetOrderByPhone(phone string) []entity.Order_ins {
 		t[i].Order_num = len(t[i].Order_contain)
 	}
 	return t
+}
+
+func DeleteOrderBy(id int) int {
+	del_ordernum := db.DeleteOrder(func(m *entity.Orders) bool {
+		return m.ID == id
+	})
+	db.DeleteOrderfood(func(m *entity.Orderfood) bool {
+		return m.Order_id == id
+	})
+	return del_ordernum
 }

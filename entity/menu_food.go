@@ -2,7 +2,7 @@ package entity
 
 type Menufood struct {
 	ID            int     `xorm:"pk autoincr" json:"id"`
-	Name          string  `xorm:"pk notnull unique" json:"name"`
+	Name          string  `xorm:"unique" json:"name"`
 	Restaurant_id int     `json:"restaurant_id"`
 	Src           string  `json:"src"`
 	Price         float64 `json:"price"`
@@ -11,8 +11,8 @@ type Menufood struct {
 }
 
 type Menufood_ins struct {
-	Categorys string `json:"categorys"`
-	Menufoods []Menufood   `json:"menufoods"`
+	Categorys string     `json:"categorys"`
+	Menufoods []Menufood `json:"menufoods"`
 }
 
 func (u *Menufood) Copy() *Menufood {

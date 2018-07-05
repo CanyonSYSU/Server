@@ -3,8 +3,6 @@ package service
 import (
 	"reflect"
 	"testing"
-
-	"github.com/karl-jm-huang/golang-CI/entity"
 )
 
 func TestCommentRegister(t *testing.T) {
@@ -81,13 +79,13 @@ func TestGetCommentCountByTag(t *testing.T) {
 func TestListAllTags(t *testing.T) { //ListAllTags()需要额外返回bool
 	tests := []struct {
 		name string
-		want []entity.Tags
+		want int
 	}{
-		{"目前只有“good”与“bad”两类评论标签", []entity.Tags{{"good", 2}, {"bad", 1}}},
+		{"目前只有“good”与“bad”两类评论标签", 2},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := ListAllTags(); !reflect.DeepEqual(got, tt.want) {
+			if got := len(ListAllTags()); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("ListAllTags() = %v, want %v", got, tt.want)
 			}
 		})

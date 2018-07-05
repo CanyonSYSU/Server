@@ -20,8 +20,8 @@ func TestMenufoodRegister(t *testing.T) {
 		want    bool
 		wantErr bool
 	}{
-		{"添加可乐", args{"cola", 1.5, 0, "juice", "ice cola", "adwww.jpg"}, true, false},
-		{"添加雪碧", args{"sprit", 2.5, 0, "juice", "ice sprit", "32dsd.jpg"}, true, false},
+		{"添加可乐", args{"cola", 1.5, 1, "juice", "ice cola", "adwww.jpg"}, true, false},
+		{"添加雪碧", args{"sprit", 2.5, 1, "juice", "ice sprit", "32dsd.jpg"}, true, false},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

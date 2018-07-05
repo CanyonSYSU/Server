@@ -58,12 +58,12 @@ func TestOrderfoodRegister(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			got, err := OrderfoodRegister(tt.args.customer_phone, tt.args.table_id, tt.args.order_contain, tt.args.total, tt.args.order_num, tt.args.time)
+			if got != tt.want {
+				t.Errorf("OrderfoodRegister() = %v, want %v", got, tt.want)
+			}
 			if (err != nil) != tt.wantErr {
 				t.Errorf("OrderfoodRegister() error = %v, wantErr %v", err, tt.wantErr)
 				return
-			}
-			if got != tt.want {
-				t.Errorf("OrderfoodRegister() = %v, want %v", got, tt.want)
 			}
 		})
 	}
