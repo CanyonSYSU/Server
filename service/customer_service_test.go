@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/karl-jm-huang/golang-CI/entity"
+	"github.com/CanyonSYSU/Server/entity"
 )
 
 func TestCustomerRegister(t *testing.T) {
